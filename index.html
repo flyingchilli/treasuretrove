@@ -1,95 +1,215 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Treasure Trove</title>
   <style>
     :root {
-      --bg: #0f172a; /* slate-900 */
-      --card: #111827; /* gray-900 */
-      --muted: #64748b; /* slate-500 */
-      --ring: #22d3ee; /* cyan-400 */
-      --ok: #34d399; /* emerald-400 */
-      --danger: #f87171; /* red-400 */
+      --bg: #0f172a;
+      /* slate-900 */
+      --card: #111827;
+      /* gray-900 */
+      --muted: #64748b;
+      /* slate-500 */
+      --ring: #22d3ee;
+      /* cyan-400 */
+      --ok: #34d399;
+      /* emerald-400 */
+      --danger: #f87171;
+      /* red-400 */
     }
-    html, body { height: 100%; }
+
+    html,
     body {
-      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
       background: radial-gradient(1200px 800px at 80% -10%, #1e293b 0%, var(--bg) 60%);
       color: #e5e7eb;
-      display: grid; place-items: center;
+      display: grid;
+      place-items: center;
     }
+
     .card {
       width: min(92vw, 460px);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
       padding: 28px;
       backdrop-filter: blur(6px);
     }
-    h1 { margin: 0 0 8px; font-weight: 700; font-size: 1.75rem; letter-spacing: 0.2px; }
-    p { margin: 0 0 18px; color: var(--muted); }
-    label { display: block; margin: 14px 0 8px; font-weight: 600; }
+
+    h1 {
+      margin: 0 0 8px;
+      font-weight: 700;
+      font-size: 1.75rem;
+      letter-spacing: 0.2px;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    label {
+      display: block;
+      margin: 14px 0 8px;
+      font-weight: 600;
+    }
+
     .field {
-      display: flex; align-items: center; gap: 8px;
-      background: #0b1220; border: 1px solid rgba(255,255,255,0.08);
-      padding: 10px 12px; border-radius: 12px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #0b1220;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 12px;
+      border-radius: 12px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
     }
-    input[type="password"], input[type="text"] {
-      flex: 1; font: inherit; color: #f1f5f9; background: transparent; border: 0; outline: none;
+
+    input[type="password"],
+    input[type="text"] {
+      flex: 1;
+      font: inherit;
+      color: #f1f5f9;
+      background: transparent;
+      border: 0;
+      outline: none;
     }
-    .toggle { cursor: pointer; border: 0; background: transparent; color: #94a3b8; font-weight: 600; }
-    .toggle:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: 6px; }
-    .actions { display: flex; gap: 10px; margin-top: 16px; }
+
+    .toggle {
+      cursor: pointer;
+      border: 0;
+      background: transparent;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    .toggle:focus-visible {
+      outline: 2px solid var(--ring);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
     button[type="submit"] {
-      flex: 1; cursor: pointer; border: 0; padding: 12px 14px; border-radius: 12px; font-weight: 700;
-      background: linear-gradient(180deg, #22d3ee, #06b6d4); color: #0f172a;
+      flex: 1;
+      cursor: pointer;
+      border: 0;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #22d3ee, #06b6d4);
+      color: #0f172a;
       box-shadow: 0 8px 26px rgba(34, 211, 238, 0.35);
     }
-    button[type="submit"]:focus-visible { outline: 2px solid white; outline-offset: 2px; }
-    .error { margin-top: 10px; color: var(--danger); min-height: 1.25em; }
+
+    button[type="submit"]:focus-visible {
+      outline: 2px solid white;
+      outline-offset: 2px;
+    }
+
+    .error {
+      margin-top: 10px;
+      color: var(--danger);
+      min-height: 1.25em;
+    }
+
     .success {
-      display: grid; place-items: center; gap: 10px;
-      min-height: 180px; text-align: center;
+      display: grid;
+      place-items: center;
+      gap: 10px;
+      min-height: 180px;
+      text-align: center;
       animation: pop 420ms ease-out both;
     }
+
     @keyframes pop {
-      from { transform: translateY(6px) scale(0.98); opacity: 0; }
-      to { transform: translateY(0) scale(1); opacity: 1; }
+      from {
+        transform: translateY(6px) scale(0.98);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    a {
+      color: #38b6ff;
+      text-decoration: underline;
+    }
+
+    a:visited {
+      color: #38b6ff;
     }
   </style>
 </head>
+
 <body>
   <main class="card" id="app" aria-live="polite">
     <section id="gate" aria-label="Password gate">
-      <h1>Enter Password</h1>
-      <p>Unlock the trove by typing the secret password below.</p>
+      <h1>Gibt das Passwort ein</h1>
+      <p>Öffne die Schatztruhe indem Du das Rätsel löst</p>
+      <img src="cross.jpg" /img>
+      <p>
+      <ol>
+        <li>Welches seltene Material wird für eine Diamantspitzhacke benötigt?</li>
+        <li>Welches Werkzeug ist essenziell, um Erde abzubauen?</li>
+        <li>Was ist die Hauptnahrung des Spielers, um Hunger zu stillen?</li>
+        <li>Welches Tier ist das einzige, das man reiten kann und aus dem man Wolle bekommt?</li>
+        <li>Wie viele Wollblöcke werden für ein Bett benötigt?</li>
+      </ol>
+      </p>
       <form id="gate-form">
-        <label for="password">Password</label>
+        <label for="password">Passwort</label>
         <div class="field">
-          <input id="password" name="password" type="password" inputmode="text" autocomplete="current-password" spellcheck="false" required autofocus />
-          <button type="button" id="togglePw" class="toggle" aria-pressed="false" aria-controls="password" title="Show/Hide password">Show</button>
+          <input id="password" name="password" type="password" inputmode="text" autocomplete="current-password"
+            spellcheck="false" required autofocus />
+          <button type="button" id="togglePw" class="toggle" aria-pressed="false" aria-controls="password"
+            title="Zeige/verberge Passwort">Zeigen</button>
         </div>
         <div class="actions">
-          <button id="submitBtn" type="submit">Unlock</button>
+          <button id="submitBtn" type="submit">Öffnen</button>
         </div>
         <div id="error" class="error" role="status" aria-live="polite"></div>
       </form>
     </section>
 
     <section id="success" class="success" hidden>
-      <h1 id="welcome" tabindex="-1">Welcome to the treasure trove!</h1>
-      <p class="hint" style="color: var(--muted)">You made it. Enjoy your stay ✨</p>
+      <h1 id="welcome" tabindex="-1">Herzlichen Glückwunsch zum Geburtstag!</h1>
+      <h2>Kati und Henning wünschen Dir alles Gute zum Geburtstag, viel Spaß, wenig Stress mit den Eltern und eine liebe Clara.</h2>
+      <p>Du hast die Schatztruhe geöffnet und findest darin ein kleines Geschenk von Kati und mir 🎁</p>
+      <p>Wir laden Dich nach Berlin ein, um mit uns das
+        <a href="https://www.computerspielemuseum.de/" target="_blank" rel="noopener">
+          Computerspielemuseum
+        </a>
+        zu besuchen.
+        <br>
+        <a href="https://www.computerspielemuseum.de/" target="_blank" rel="noopener">
+          <img src="museum.jpg" alt="Computerspielmuseum Thumbnail" style="width:400px; border-radius:8px; margin-top:8px;">
+        </a>
+      </p>
     </section>
   </main>
 
   <script>
     // Simple client-side password check.
     // NOTE: This is for demos only — do not use client-only checks for real authentication.
-    const SECRET = "opensesame"; // <- change this to whatever you like
+    const SECRET = "aprfr"; // <- change this to whatever you like
 
     const el = (id) => document.getElementById(id);
 
@@ -103,25 +223,26 @@
     toggle.addEventListener('click', () => {
       const showing = input.type === 'text';
       input.type = showing ? 'password' : 'text';
-      toggle.textContent = showing ? 'Show' : 'Hide';
+      toggle.textContent = showing ? 'Zeigen' : 'Verbergen';
       toggle.setAttribute('aria-pressed', String(!showing));
       input.focus();
     });
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const val = input.value;
+      const val = input.value.toLowerCase();
       if (val === SECRET) {
         gate.hidden = true;
         success.hidden = false;
         // focus the success heading for accessibility
         requestAnimationFrame(() => el('welcome').focus());
       } else {
-        error.textContent = 'Incorrect password. Try again.';
+        error.textContent = 'Das ist nicht die richtige Lösung, versuch es noch einmal';
         input.value = '';
         input.focus();
       }
     });
   </script>
 </body>
+
 </html>
