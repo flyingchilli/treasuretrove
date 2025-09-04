@@ -189,7 +189,7 @@
       </form>
     </section>
 
-    <section id="success" class="success" hidden>
+    <section id="success" hidden>
       <h1 id="welcome" tabindex="-1">Herzlichen Glückwunsch zum Geburtstag!</h1>
       <h2>Kati und Henning wünschen Dir alles Gute zum Geburtstag, viel Spaß, wenig Stress mit den Eltern und eine liebe Clara.</h2>
       <p>Du hast die Schatztruhe geöffnet und findest darin ein kleines Geschenk von Kati und mir 🎁</p>
@@ -234,6 +234,7 @@
       if (val === SECRET) {
         gate.hidden = true;
         success.hidden = false;
+        success.className = 'success';
         // focus the success heading for accessibility
         requestAnimationFrame(() => el('welcome').focus());
       } else {
